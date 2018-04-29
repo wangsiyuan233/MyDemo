@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task01_04：hover改变样式</title>
+
+<style>
+body{color:#fff;font:12px/1.5 Tahoma;}
+#div1{width:150px;height:150px;margin:0 auto;padding:10px;background:black;border:10px solid #000;cursor:crosshair;}
+#div1.hover{color:red;background:#f0f0f0;border:10px solid red;}
+</style>
+
+<script>
+window.onload = function (){
+	var oDiv = document.getElementById("div1");
+	oDiv.onmouseover = function (){
+		oDiv.className = "hover"
+	};
+	oDiv.onmouseout = function (){
+		oDiv.className = ""
+	}
+};
+</script>
+
+</head>
+
+<body>
+<div id="div1">鼠标进为红白<br>鼠标出为黑白</div>
+</body>
+
+</html>
