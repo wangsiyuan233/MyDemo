@@ -1,8 +1,8 @@
-### task01_01：控制div属性
+## task01_01：控制div属性
 
 【平均用时 0.2 天】
-[【我的代码】]()
-[【效果预览】]()
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task01/01/task01_01.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task01/01/task01_01.html)
 
 ### 任务目的
 通过不同的按钮，来给div改变style
