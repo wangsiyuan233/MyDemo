@@ -1,4 +1,4 @@
-## task01_05：for循环
+## task01_05：一键变红
 
 【平均用时 0.01 天】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task01/05/task01_05.html)
