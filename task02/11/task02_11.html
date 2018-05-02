@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task02_11：放大显示</title>
+
+<style>
+body,div,h2,ul,li{margin:0;padding:0;}
+body{font:12px/1.5 Tahoma;}
+ul{list-style-type:none;}
+#outer{width:560px;border:1px solid #333;margin:100px auto;padding:0 0 10px 10px;}
+#outer h2{line-height:30px;text-align:center;margin-top:10px;}
+#outer ul:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+#outer ul{zoom:1;}
+#outer ul li{position:relative;float:left;border:1px solid #333;margin:50px 40px;display:inline;}
+#outer ul li img{position:absolute;top:-14px;left:-22px;display:none;border:2px solid #999;cursor:pointer;}
+#outer ul li a{color:#666;width:80px;height:80px;display:block;background:#f0f0f0;text-decoration:none;padding:10px;}
+#outer ul li a strong{display:block;}
+.zindex{z-index:1;}
+</style>
+
+<script>
+window.onload = function (){
+	var li = document.getElementsByTagName("li");
+	var img = document.getElementsByTagName("img");
+
+	for (var i = 0; i < li.length; i++) {
+	  li[i].index = i;
+
+	  li[i].onmouseover = function(){
+	    li[this.index].className = 'zindex';
+	    img[this.index].style.display = 'block'
+	  };
+
+	  li[i].onmouseout = function(){
+	    li[this.index].className = '';
+	    img[this.index].style.display = 'none'
+	  };
+
+	}
+
+}
+</script>
+</head>
+<body>
+<div id="outer">
+  <h2>滑动放大</h2>
+
+  <ul>
+    <li>
+        <a href="#" title="数字1"><strong>一</strong>前端工程师</a>
+        <img src="img/1.png" alt="数字1"/ width="150px;" height="150px">
+    </li>
+    <li>
+        <a href="#" title="数字2"><strong>二</strong> 劳动节</a>
+        <img src="img/2.png" alt="数字2"/ width="150px;" height="150px">
+    </li>
+    <li>
+        <a href="#" title="数字3"><strong>三</strong> 汶川十年</a>
+        <img src="img/3.png" alt="数字3"/ width="150px;" height="150px">
+    </li>
+  </ul>
+
+</div>
+</body>
+</html>

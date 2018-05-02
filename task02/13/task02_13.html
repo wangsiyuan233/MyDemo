@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task02_13：全选/反选</title>
+
+<style>
+body,dl,dt,dd,p{margin:0;padding:0;}
+body{font-family:Tahoma;font-size:12px;}
+label,input,a{vertical-align:middle;}
+label{padding:0 10px 0 5px;}
+a{color:#09f;text-decoration:none;}
+a:hover{color:red;}
+dl{width:120px;margin:10px auto;padding:10px 5px;border:1px solid #666;border-radius:5px;background:#fafafa;}
+dt{padding-bottom:10px;border-bottom:1px solid #666;}
+dt label{font-weight:700;}
+p{margin-top:10px;}
+</style>
+
+<script type="text/javascript">
+window.onload = function (){
+	var oLabel = document.getElementsByTagName("label")[0]; /* 取第一个label标签 [全选]*/
+	var oA = document.getElementsByTagName("a")[0]; /* 取唯一一个超链接 [反选] */
+	var oInput = document.getElementsByTagName("input"); /* 取所有的checkbox */
+
+	var isCheckAll = function (){
+		for (var i = 1, n = 0; i < oInput.length; i++){ //i 是选项小格子  n是选项小格子 + 全选按钮
+			oInput[i].checked && n++  //checked 属性设置 checkbox 是否应被选中。
+		}
+		oInput[0].checked = n == oInput.length - 1; // 这里就是 oInput 的长度（为11）。不关i的事儿。
+		 // [全选] = 所有选项小格子
+		oLabel.innerHTML = oInput[0].checked ? "全不选" : "全选" //只是一个值的改变
+	}; // 第一个全选标签的值 = 第一个checkbox[全选] ? "全不选" : "全选"
+
+
+	//全选/全不选
+	oInput[0].onclick = function (){  //给全选按钮绑定一个事件
+		for (var i = 1; i < oInput.length; i++){
+			oInput[i].checked = this.checked   //this是指？？？
+		}
+		isCheckAll()
+	};
+
+	//反选
+	oA.onclick = function (){
+		for (var i = 1; i < oInput.length; i++){
+			oInput[i].checked = !oInput[i].checked //选中的按钮 = 没选中的
+		}
+		isCheckAll()
+	};
+
+	//遍历所有的checkbox，只要点击了，就调用主函数
+	// for (var i = 1; i < oInput.length; i++){
+	// 	oInput[i].onclick = function (){
+	// 	isCheckAll()
+	// 	}
+	// };
+};
+</script>
+</head>
+
+<body>
+	<!-- <dl>、<dt>、<dd>通常是用来描述一些术语定义  -->
+<dl>
+  <dt><input type="checkbox" id="checkAll" /><label>全选</label><a href="#">反选</a></dt>
+  <dd>
+    <p><input type="checkbox" name="item" /><label>选项（一）</label></p>
+    <p><input type="checkbox" name="item" /><label>选项（二）</label></p>
+    <p><input type="checkbox" name="item" /><label>选项（三）</label></p>
+    <p><input type="checkbox" name="item" /><label>选项（四）</label></p>
+    <p><input type="checkbox" name="item" /><label>选项（五）</label></p>
+    <p><input type="checkbox" name="item" /><label>选项（六）</label></p>
+    <p><input type="checkbox" name="item" /><label>选项（七）</label></p>
+    <p><input type="checkbox" name="item" /><label>选项（八）</label></p>
+    <p><input type="checkbox" name="item" /><label>选项（九）</label></p>
+    <p><input type="checkbox" name="item" /><label>选项（十）</label></p>
+  </dd>
+</dl>
+<center>1、切换全选/全不选文字；2、根据选中个数更新全选框状态；</center>
+</body>
+</html>

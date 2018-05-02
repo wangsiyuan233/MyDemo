@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task02_12：修改图片路径</title>
+
+<style>
+body,ul,li{margin:0;padding:0;}
+body{background:#000;}
+img{border:0;border-radius:3px;}
+ul{list-style-type:none;}
+#box{width:212px;border:5px solid #fff;overflow:hidden;zoom:1;background:#fff;border-radius:5px;margin:100px auto;padding:0 0 3px 3px;}
+#box li,#box li img{float:left;width:50px;height:50px;}
+#box li{margin:3px 3px 0 0;}
+#box li.first{position:relative;}
+#box li.first,#box li.first img{width:156px;height:156px;}
+</style>
+
+<script type="text/javascript">
+window.onload = function (){
+	var oImg = document.getElementById("box").getElementsByTagName("img");
+
+	for (var i = 1; i < oImg.length; i++){
+		oImg[i].onmouseover = function (){
+			var img = new Image(); /*有什么作用？？*/
+			img.src = oImg[0].src = this.src.replace();
+			/* 新图片集合的地址 = 第一张大图的地址 = 此时此刻选中的小图的转换*/
+		}
+	}
+};
+</script>
+
+</head>
+<body>
+
+<ul id="box">
+    <li class="first"><img src="img/1.png"><div></div></li>
+    <li><a href="#"><img src="img/1.png"></a></li>
+    <li><a href="#"><img src="img/2.png"></a></li>
+    <li><a href="#"><img src="img/3.png"></a></li>
+		<li><a href="#"><img src="img/4.png"></a></li>
+		<li><a href="#"><img src="img/5.png"></a></li>
+		<li><a href="#"><img src="img/6.png"></a></li>
+		<li><a href="#"><img src="img/7.png"></a></li>
+</ul>
+
+</body>
+</html>

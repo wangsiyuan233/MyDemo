@@ -1,0 +1,99 @@
+
+* {
+  margin: 0;
+	padding: 0;
+}
+
+/* Class for clearing floats */
+.clear {
+	clear: both;
+}
+
+/* 开始   开始   开始   开始   开始   开始   开始   开始  */
+.wrap1{
+	height: 355px;
+	margin: 100px 0px 0px 368px;
+}
+
+.title{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	background-color: #F4F5F7;
+	color: #B5B5B5;
+	text-indent: 20px;
+  /*text-indent 文本首行缩进  */
+}
+
+/*第一块*/
+.wrap2{
+	width: 528px;
+  height: 300px;
+	/* margin-right: 8px; */
+	color: #535353;
+}
+.wrap2 ul{
+	margin: 12px 0 0 20px;
+	position: relative;
+  /* 为啥ul塌陷了？ */
+}
+
+.wrap2 li{
+  list-style: none;
+	float: left;
+}
+.wrap2 input{
+	/*display: none;*/
+  border: none;
+  outline: none;
+	appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+.wrap2 label{
+	width: 80px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	border: 1px solid #CBCCCC;
+	border-radius: 3px 3px 0 0;
+	margin-right: 5px;
+	float: left;
+	background-color: #EDEDF0;
+	position: relative;
+	z-index: 1;
+	cursor: pointer;
+}
+[class*='pro_table_']{
+	width: 488px;
+	height: 248px;
+	border: 1px solid #CBCCCC;
+	margin-top: -1px;
+	border-radius: 0 3px 3px 3px;
+	background-color: #FFFFFF;
+	position: absolute;
+	top: 28px;
+	left: 0;
+	z-index: 0;
+	display: none;
+}
+
+[class*='pro_table_'] table{
+  border: 1px solid #CBCCCC;
+	width: 400px;
+	line-height: 28px;
+	margin: 27px auto 0;
+}
+[class*='pro_table_'] td{
+	border: 1px solid #CBCCCC;
+	text-align: center;
+}
+/* 兄弟选择符 ~ */
+[id*='pro_']:checked~[class*='pro_table_']{
+	display: block;
+}
+
+[id*='pro_']:checked~label{
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+}

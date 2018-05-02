@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task02_01：输入法</title>
+
+<style>
+body,ul,li,button{margin:0;padding:0;}
+body{font:12px/1.5 Tahoma;}
+ul{list-style-type:none;}
+button{cursor:pointer;}
+#outer{width:70px;margin:10px auto;}
+#ul{margin-top:5px;background:#fff;border:1px solid #9a99ff;display:none;}
+#ul li{width:100%;line-height:24px;display:inline-block;vertical-align:top;}
+#close{border-top:1px solid #9a99ff;}
+#ul li a{color:#00c;padding:0 5px;display:block;text-decoration:none;}
+#ul li a:hover{background:#d9e1f6;}
+</style>
+
+<script>
+window.onload = function (){
+	var oBtn = document.getElementsByTagName("button")[0];//什么时候有 0，什么时候没有呢？
+	var oUl = document.getElementById("ul");
+	var oClose = document.getElementById("close");
+	var style = oUl.style;
+	oBtn.onclick = function(){
+		style.display = style.display == "block" ? "none" : "block"
+	};
+	oClose.onclick = function(){
+		style.display = "none"
+	}
+}
+</script>
+
+</head>
+<body>
+<div id="outer">
+    <button>输入法</button>
+    <ul id="ul">
+        <li><a href="#">手写</a></li>
+        <li><a href="#">拼音</a></li>
+        <li id="close"><a href="#">关闭</a></li>
+    </ul>
+</div>
+</body>
+</html>

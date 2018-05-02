@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task02_03：数组求和</title>
+
+<style>
+body{color:#999;font:12px/1.5 Tahoma;}
+#outer{width:500px;margin:0 auto;}
+#outer input{padding:3px;border:1px solid #ccc;font-family:inherit;width:220px;margin-right:10px;}
+.sum{font-size:50px;color:red;}
+</style>
+
+<script>
+window.onload = function (){
+	var oBtn = document.getElementsByTagName("button")[0];
+	var oInput = document.getElementsByTagName("input")[0]
+	var oStrong = document.getElementsByTagName("strong")[0];
+	oInput.onkeyup = function (){
+		//onkeyup 事件会在键盘按键被松开时发生。
+		//输入您的姓名： <input type="text" id="fname" onkeyup="upperCase(this.id)" />
+		this.value = this.value.replace(/[^(\d)|(,)]/,"")
+		//replace(旧，新)
+		// ^表示非   \d匹配一个数字 等价于[0-9]  |是或者
+		//不是数字或者不是半角逗号的输入，在你松开键盘的时候，就会被replace成''
+	}
+	oBtn.onclick = function (){
+		var sum = 0;
+		var oInput = document.getElementsByTagName("input")[0].value.split(",");
+		for (var i in oInput){
+			sum += parseInt(oInput[i])
+			//parseInt() 函数可解析一个字符串，并返回一个整数。
+		}
+		oStrong.innerHTML = sum
+	}
+}
+</script>
+</head>
+
+<body>
+<div id="outer">
+    <label><input type="text" value="1,2,3,4,5,6,7" /><span>输入数字求和，数字之间用半角","号分隔</span></label>
+    <p><button>一键求和</button></p>
+    <strong class="sum"></strong>
+</div>
+</body>
+</html>
