@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task03_06：判断两位数</title>
+
+<style>
+body{font:12px/1.5 arial;text-align:center;}
+.wrap{margin-top: 150px;}
+.f-text{width:50px;border:1px solid #ccc;background:#f0f0f0;font-family:inherit;padding:3px;margin-right:10px;}
+</style>
+
+<script type="text/javascript">
+window.onload = function (){
+	var aInput = document.getElementsByTagName("input");
+
+	aInput[0].onkeyup = function (){
+		this.value = this.value.replace(/[^\d]/,"")
+	}
+
+	//用[嵌套的]三元运算符完成 if 判断
+	aInput[1].onclick = function (){
+		(aInput[0].value == "") ?
+		alert("请输入数字！") :
+		alert(/^\d{2}$/.test(parseInt(aInput[0].value)) ? "对的哦您输入的是两位数" : "这是" + aInput[0].value.length + "位数好伐");
+	}
+	// ^是开始符合、 d{2}是 0-9 里组成的两位数、 $是结束符合
+	//test() 方法用于检测一个字符串是否匹配某个模式.
+};
+</script>
+</head>
+<body>
+
+	<div class="wrap">
+		<input type="text" class="f-text" />
+		<input type="button" value="是否为两位数" />
+	</div>
+
+</body>
+</html>

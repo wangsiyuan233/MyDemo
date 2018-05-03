@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task03_05：自动累加</title>
+
+<style>
+body{text-align:center;font:700 80px/1.5 arial;margin-top: 150px;}
+</style>
+
+<script>
+
+window.onload = function(){
+	var i = 0;
+	setInterval(function(){
+		document.body.innerHTML = i++; // ++i 和 i++ 在这里都可以累加
+	},500)
+}
+
+
+</script>
+</head>
+<body>
+</body>
+</html>
