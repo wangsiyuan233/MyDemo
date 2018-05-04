@@ -41,7 +41,7 @@ window.onload = function (){
 
 	for (i = 0; i < aA.length; i++){
 		aA[i].onfocus = function (){
-			this.blur()
+			this.blur() //blur() 方法用于从链接上移开焦点。
 		};
 		aA[i].onclick = function (){
 			switch(this.innerHTML){
@@ -65,7 +65,9 @@ window.onload = function (){
 					count("+")
 					break;
 				case "=":
+					// flase 或 最后的值 = 最后的值 + 输入的值
 					s || (oFormula.value += aInput.value);
+					// eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。
 					aInput.value = eval(oFormula.value.replace(/\%\/\*\-\+/,''));
 					aInput.value = aInput.value.substr(0,10).replace("NaN",0);
 					s = true;
@@ -101,6 +103,7 @@ window.onload = function (){
 <body>
 <div id="calc">
     <p>By wangsiyuan233.cn</p>
+		<!--readonly 属性规定输入字段为只读。-->
     <input class="f-text" type="text" readonly="readonly" maxlength="9" value="0" />
     <ul>
         <li class="btn-1"><a href="javascript:void(0)">c</a></li>

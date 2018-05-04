@@ -11,7 +11,7 @@
 - 无法描述
 
 ### 任务注意事项
-- Math.max(aInput[0].value, aInput[1].value)
+- `Math.max(aInput[0].value, aInput[1].value)`
 
 
 

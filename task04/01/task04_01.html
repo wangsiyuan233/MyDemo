@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task04_01：二级nav</title>
+
+<style>
+body,div,ul,li,p{margin:0;padding:0;}
+body{font:12px/1.5 Arial;}
+ul{list-style-type:none;}
+#nav,#nav ul,#nav ul li,#nav ul li a:hover,#nav .subnav,#nav .subnav p,#nav .subnav p span,#nav .subnav .arrow{background:url(img/nav_bg.png) no-repeat;}
+#nav{position:relative;width:910px;background-position:0 -36px;margin:10px auto;}
+#nav ul{height:36px;line-height:36px;margin-left:10px;padding-right:10px;overflow:hidden;background-position:right -72px;}
+#nav ul li{float:left;width:110px;margin-left:-2px;background-position:0 -108px;}
+#nav ul li a{font-size:14px;color:#fff;width:102px;display:block;text-align:center;text-decoration:none;margin:0 2px 0 4px;}
+#nav ul li a:hover{font-weight:700;background-position:-3px -144px;}
+#nav .subnav{display:none;position:absolute;top:41px;width:auto!important;min-width:110px;height:27px;line-height:27px;white-space:nowrap;background-position:0 -180px;}
+#nav .subnav p{margin-left:10px;padding-right:10px;background-position:right -234px;}
+#nav .subnav p span{display:block;color:#235e99;background-repeat:repeat-x;background-position:0 -207px;}
+#nav .subnav p a{font-size:12px;display:inline;color:#235e99;text-decoration:none;margin:0 5px;padding:0 2px;}
+#nav .subnav p a:hover{font-weight:400;background-image:none;border-bottom:2px solid;}
+#nav .subnav .arrow{position:absolute;top:-4px;display:block;width:11px;height:5px;background-position:0 -261px;}
+</style>
+
+<script type="text/javascript">
+
+var get = {
+	byId: function(id) {
+		return document.getElementById(id)
+	},
+	byClass: function(sClass, oParent) {
+		var aClass = [];
+		var reClass = new RegExp("(^| )" + sClass + "( |$)");
+		var aElem = this.byTagName("*", oParent);
+		for (var i = 0; i < aElem.length; i++)
+		reClass.test(aElem[i].className) && aClass.push(aElem[i]);
+		return aClass
+	},
+	byTagName: function(elem, obj) {
+		return (obj || document).getElementsByTagName(elem)
+	}
+};
+window.onload = function (){
+	var nav = get.byId("nav");
+	var li = get.byTagName("li", nav);
+	var subnav = get.byClass("subnav", nav);
+	var oSubNav = oEm = timer = null;
+	var i = 0;
+
+	for (i = 1; i < li.length; i++){
+		li[i].onmouseover = function (){
+			//隐藏所有子菜单
+			for (i = 0; i < subnav.length; i++)
+			subnav[i].style.display = "none";
+
+			//获取该项下的子菜单
+			oSubNav = get.byClass("subnav", this)[0];
+			console.log(this)
+
+			//获取该项下的指示箭头
+			oEm = get.byTagName("em", this)[0];
+
+			//显示该项下的子菜单
+			oSubNav.style.display = "block";
+
+			//判断显示区域
+			nav.offsetWidth - this.offsetLeft > oSubNav.offsetWidth ?
+
+			//如果在显示范围居左显示
+			oSubNav.style.left = this.offsetLeft + "px" :
+
+			//超出显示范围居右显示
+			oSubNav.style.right = 0;
+
+			//计算指标箭头显示位置
+			oEm.style.left = this.offsetLeft - oSubNav.offsetLeft + 50 + "px";
+			clearTimeout(timer);
+
+			//阻止事件冒泡
+			oSubNav.onmouseover = function (event){
+				(event || window.event).cancelBubble = true;
+				clearTimeout(timer)
+			}
+		};
+
+		li[i].onmouseout = function (){
+			timer = setTimeout(function () {
+				oSubNav.style.display = "none"
+			},300)
+		}
+	}
+};
+
+
+</script>
+</head>
+<body>
+<div id="nav">
+    <ul>
+        <li><a href="#">前端之家</a></li>
+        <li>
+            <a href="#">行业资讯</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="#">业界动态</a>|
+                        <a href="#">收购融资</a>|
+                        <a href="#">门户动态</a>|
+                        <a href="#">搜索引擎</a>|
+                        <a href="#">网络游戏</a>|
+                        <a href="#">电子商务</a>|
+                        <a href="#">广告传媒</a>|
+                        <a href="#">厂商开发</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="#">站长在线</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="#">站长报道</a>|
+                        <a href="#">好站推荐</a>|
+                        <a href="#">站长聚会</a>|
+                        <a href="#">站长访谈</a>|
+                        <a href="#">站长茶馆</a>|
+                        <a href="#">网站排行</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="#">网站运营</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="#">建站经验</a>|
+                        <a href="#">策划盈利</a>|
+                        <a href="#">搜索优化</a>|
+                        <a href="#">网站推广</a>|
+                        <a href="#">免费资源</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="#">设计在线</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="#">酷站推荐</a>|
+                        <a href="#">网页设计</a>|
+                        <a href="#">WEB标准</a>|
+                        <a href="#">视频处理</a>|
+                        <a href="#">设计活动</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="#">网络编程</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="#">Asp编程</a>|
+                        <a href="#">Php编程</a>|
+                        <a href="#">.Net编程</a>|
+                        <a href="#">Xml编程</a>|
+                        <a href="#">Access</a>|
+                        <a href="#">Mssql</a>|
+                        <a href="#">Mysql</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="#">联盟资讯</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="#">联盟动态</a>|
+                        <a href="#">联盟介绍</a>|
+                        <a href="#">联盟点评</a>|
+                        <a href="#">网赚技巧</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="#">服务器</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="#">Web服务器</a>|
+                        <a href="#">Ftp服务器</a>|
+                        <a href="#">Mail服务器</a>|
+                        <a href="#">Dns服务器</a>|
+                        <a href="#">Win服务器</a>|
+                        <a href="#">Linux服务器</a>|
+                        <a href="#">安全防护</a>|
+                        <a href="#">虚拟主机</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
