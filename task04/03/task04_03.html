@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>task04_03：反弹型轮播</title>
+<title>task04_03：来回轮播</title>
 
 <style>
 body,div,ul,li{margin:0;padding:0;}
@@ -28,7 +28,7 @@ window.onload = function (){
 	var num = ul[1].getElementsByTagName("li");
 	var timer = play = null;
 	var i = index = 0;
-	var bOrder = true;
+	var order = true;
 
 	//切换按钮
 	for (i = 0; i < num.length; i++){
@@ -41,7 +41,6 @@ window.onload = function (){
 	//鼠标划过关闭定时器
 	box.onmouseover = function (){clearInterval(play)};
 
-
 	//鼠标离开启动自动播放
 	box.onmouseout = function (){autoPlay()};
 
@@ -50,17 +49,17 @@ window.onload = function (){
 	function autoPlay (){
 		play = setInterval(function () {
 			//判断播放顺序
-			bOrder ? index++ : index--;
+			order ? index++ : index--;
 
-			//正序
-			index >= img.length && (index = img.length - 2, bOrder = false);
+			//正序 打印结果是false
+			index >= img.length && (index = img.length - 2, order = false);
 
-			//倒序
-			index <= 0 && (index = 0, bOrder = true);
-
+			//倒序 打印结果是false
+			index <= 0 && (index = 0, order = true);
+			
 			//调用函数
 			show(index)
-		},1500);
+		},2000);
 	}
 	autoPlay();//应用
 
@@ -72,20 +71,17 @@ window.onload = function (){
 		for (i = 0; i < num.length; i++){
 			num[i].className = "";
 			num[index].className = "current";
-			clearInterval(timer); //为什么要清空？
+			clearInterval(timer);
 		};
 
 		for (i = 0; i < img.length; i++){
 			img[i].style.opacity = 0;
-			img[i].style.filter = "alpha(opacity=0)";
 		};
 
 		timer = setInterval(function () {
 			alpha += 10;
-			// alpha 大于100 且 alpha =100??????
-			alpha > 100 && (alpha =100);
+			alpha > 100 && (alpha =100); // alpha 大于等于 100时
 			img[index].style.opacity = alpha / 100;
-			img[index].style.filter = "alpha(opacity = " + alpha + ")";
 			alpha == 100 && clearInterval(timer)
 		},200);
 	}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>task04_02：一个方向轮播</title>
+<title>task04_02：单方向轮播</title>
 
 <style>
 body,div,ul,li{margin:0;padding:0;}
@@ -27,36 +27,27 @@ window.onload = function (){
 	var ul = document.getElementsByTagName("ul");
 	var img = ul[0].getElementsByTagName("li");
 	var num = ul[1].getElementsByTagName("li");
-	var timer = play = null;
+	var timer = play = null; // 为什么？ 不是0？ 不是 undefined?
 	var i = index = 0;
 
-	//切换按钮
-	for (i = 0; i < num.length; i++){
-		num[i].index = i;
-		num[i].onmouseover = function (){
-			show(this.index)
-		}
-	}
+// 我有两个闹钟，我砸了三次闹钟
 
-	//鼠标划过关闭定时器
-	box.onmouseover = function (){clearInterval(play)};
 
-	//鼠标离开启动自动播放
-	box.onmouseout = function (){autoPlay()};
+	autoPlay();
 
 	//自动播放函数
 	function autoPlay (){
 		play = setInterval(function () {
 			index++;
-			index >= img.length && (index = 0); //????
+			index >= img.length&& (index = 0);
+			// 还是无法理解
+			// console.log(index >= img.length && (index = 0))
+			// 打印出一个false
 			show(index);
-		},1500);
+		},2000);
 	}
 
-	//调用
-	autoPlay();
-
-	//图片切换, 淡入淡出效果
+//淡入
 	function show (a){
 		index = a; //index是当前  i是除了当前
 		var alpha = 0;
@@ -64,24 +55,48 @@ window.onload = function (){
 		for (i = 0; i < num.length; i++){
 			num[i].className = "";
 			num[index].className = "current";
-			clearInterval(timer); //为什么要清空？
+			//console.log('timer1:' + timer)
+			// 打印结果为 5个null /5个2 / 5个3 / .../5个无限大
+			clearInterval(timer);
+			 //到当前页面的时候，关掉渐变
+			 //下面img初始就是0，不用关闭渐变
 		};
 
 		for (i = 0; i < img.length; i++){
 			img[i].style.opacity = 0;
-			img[i].style.filter = "alpha(opacity=0)";
-		};// 转化图像的透明程度
+		};
 
 		// 设置一个闹钟，以 [每200ms增加10个透明度]的方式，让图片从 淡变深
 		timer = setInterval(function () {
 			alpha += 10;
-			// alpha 大于100 且 alpha =100??????
-			alpha > 100 && (alpha =100);
+			// alpha 大于等于100 时
+			// alpha > 100 && (alpha =100);
+
+			// console.log(alpha > 100 && (alpha =100))
+			// 打印出9个false
 			img[index].style.opacity = alpha / 100;
-			img[index].style.filter = "alpha(opacity = " + alpha + ")";
 			alpha == 100 && clearInterval(timer)
+			// 关掉的是渐变
 		},200);
 	}
+
+	//切换按钮
+	for (i = 0; i < num.length; i++){
+		num[i].index = i; //此时此刻 index 就是0啊！
+		//console.log('index2:'+index) // 5个0
+		num[i].onmouseover = function (){
+			//console.log(this.index) //打印出鼠标触碰的 index ，0-4
+			show(this.index)
+		}
+	}
+
+	//鼠标划过关闭定时器
+	box.onmouseover = function (){clearInterval(play)};
+	//关掉的是 两秒一次的轮播
+
+	//鼠标离开启动自动播放
+	box.onmouseout = function (){autoPlay()};
+
 };
 
 </script>

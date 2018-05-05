@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task04_05：一键读取css属性</title>
+
+<style>
+div{width:400px;height:200px;background:#fef4eb;border:1px solid #990000;margin:150px auto;}
+input{border:0;color:#fff;cursor:pointer;font-weight:700;background:#990000;padding:5px 6px;margin:10px 10px;}
+</style>
+
+<script type="text/javascript">
+
+function css(obj, attr, value){
+	switch (arguments.length){
+		case 2:
+			if(typeof arguments[1] == "object"){	//二个参数, 如果第二个参数是对象, 批量设置属性
+				for (var i in attr)
+        obj.style[i] = attr[i]
+			}
+			else{	//二个参数, 如果第二个参数是字符串, 读取属性值
+				return getComputedStyle(obj, null)[attr]
+        // return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, null)[attr]
+        // obj.currentStyle 是给IE用的
+			}
+			break;
+		case 3:
+			//三个参数, 单一设置属性
+			obj.style[attr] = value;
+			break;
+		default:
+			alert("参数错误！")
+	}
+}
+
+window.onload = function (){
+	var oBox = document.getElementById("box");
+	var aInput = oBox.getElementsByTagName("input");
+
+	//第一个按钮点击事 -->一键变蓝
+	aInput[0].onclick = function (){
+		//两个参数, 第二个参数为对象, 属性批量设置
+		css(oBox, {width: "330px", height: "100px", borderColor: "#0084ff", backgroundColor: "#eff8ff"});
+		//三个参数, 属性单一设置
+		for (i = 0; i < aInput.length; i++){
+      css(aInput[i], "backgroundColor", "#0084ff")
+    }
+	}
+
+	//第二个按钮点击事件 -->一键变红
+	aInput[1].onclick = function (){
+		//两个参数, 第二个参数为对象, 属性批量设置
+    // 下面配置box的颜色
+		css(oBox, {width: "400px", height: "200px", borderColor: "#990000", backgroundColor: "#E58686"});
+		//三个参数, 属性单一设置
+    // 下面配置三个按钮的颜色
+		for (i = 0; i < aInput.length; i++){
+      css(aInput[i], "backgroundColor", "#990000")
+    }
+	}
+
+  //第三个按钮点击事件  -->读取属性
+  aInput[2].onclick = function () {
+    //两个参数, 第二个参数为字符串, 读取属性值
+    alert("width: " + css(oBox, "width") + "\nheight: " + css(oBox, "height") + "\nbackground-color: " + css(oBox, "backgroundColor"))
+  };
+};
+</script>
+</head>
+<body>
+<div id="box">
+  <input type="button" value="一键变蓝" />
+  <input type="button" value="一键变红" />
+  <input type="button" value="读取属性" />
+</div>
+</body>
+</html>
