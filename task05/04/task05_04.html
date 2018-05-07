@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task05_04：阻止右键事件</title>
+
+<style>
+div{color:#555;margin: 100px 320px;font-weight: bold;font-size: 50px;}
+</style>
+
+<script>
+//※
+document.oncontextmenu = function (){return false;}
+</script>
+</head>
+
+<body>
+	<div>点击右键无效了可不可怕</div>
+</body>
+
+</html>

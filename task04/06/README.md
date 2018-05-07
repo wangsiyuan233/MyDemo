@@ -1,8 +1,8 @@
 ## task04_06：输入框高亮
 
 【平均用时 0.1 天】
-[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/05/task04_05.html)
-[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/05/task04_05.html)
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/06/task04_06.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/06/task04_06.html)
 
 ### 任务目的
 - 点击输入框，输入框就会变色

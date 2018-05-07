@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task05_03：显示键盘编码</title>
+
+<style>
+body{text-align:center;font:30px/1.5 \5fae\8f6f\96c5\9ed1, arial;}
+
+pre{color:#555;margin: 100px 120px;font-weight: bold;}
+</style>
+
+<script type="text/javascript">
+window.onload = function (){
+	var div = document.getElementsByTagName("div")[0];
+	document.onkeydown = function (event){
+		// var event = event || window.event;
+		div.innerHTML = event.keyCode;
+		return true;    // 这是什么？？？
+	}
+}
+</script>
+
+</head>
+<body>
+<pre>下面将显示您按下键的 keyCode</pre>
+<div></div>
+</body>
+</html>

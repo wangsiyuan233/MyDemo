@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task05_07：div闪烁</title>
+
+<style type="text/css">
+#box{position:absolute;top:50%;left:50%;color:#fff;width:200px;height:200px;background:red;cursor:pointer;letter-spacing:5px;text-align:center;font:12px/200px Arial;margin:-100px 0 0 -100px;}
+</style>
+
+<script type="text/javascript">
+window.onload = function (){
+	var box = document.getElementById("box");
+	var timer = false; //timer最开始的时候是关闭的状态
+
+	box.onclick = function (){
+		var i = 0;
+		clearInterval(timer);
+		timer = setInterval(function () {
+			box.style.display = i++ % 2 ? "none" : "block";
+			i > 10 && (clearInterval(timer))
+		}, 80)
+	}
+};
+</script>
+
+</head>
+<body>
+<div id="box">点击我就闪</div>
+</body>
+</html>

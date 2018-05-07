@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task05_02：显示鼠标坐标</title>
+
+<style>
+div{color:#555;font-size: 50px;margin: 150px 110px;}
+</style>
+
+
+<script type="text/javascript">
+document.onclick = function (event){
+	// var event = event || window.event;
+	alert("坐标：[" + event.clientX + ", " + event.clientY + "]")
+}
+</script>
+
+</head>
+<body>
+  <div>随便点点吧，然后会出现你点击位置的坐标噢</div>
+</body>
+</html>
