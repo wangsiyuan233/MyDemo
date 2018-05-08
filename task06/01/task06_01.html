@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>task06_01：完美拖拽</title>
+
+<style type="text/css">
+html,body{overflow:hidden;}
+body,div,h2,p{margin:0;padding:0;}
+body{color:#fff;background:#000;font:12px/2 Arial;}
+p{padding:0 10px;margin-top:10px;}
+span{color:#ff0;padding-left:5px;}
+#box{position:absolute;width:300px;height:150px;background:#333;border:2px solid #ccc;top:50%;left:50%;margin:-75px 0 0 -150px;}
+#box h2{height:25px;cursor:move;background:#222;border-bottom:2px solid #ccc;text-align:right;padding:0 10px;}
+#box h2 a{color:#fff;font:12px/25px Arial;text-decoration:none;outline:none;}
+</style>
+
+<script type="text/javascript">
+window.onload=function (){
+	var box = document.getElementById("box");
+	var h2 = box.getElementsByTagName("h2")[0];
+	var a = box.getElementsByTagName("a")[0];
+	var span = box.getElementsByTagName("span");
+	var disX = disY = 0; //鼠标在box内的坐标 初始值为 0
+	var bDrag = false;
+	var aPos = [];
+
+	//鼠标按下, 激活拖拽
+	h2.onmousedown = function (event){
+		var event = event || window.event;
+		bDrag = true;
+		disX = event.clientX - box.offsetLeft; // 鼠标到box的长度 = 在浏览器页面内鼠标的横轴 - 左上角的横轴
+		disY = event.clientY - box.offsetTop; // 鼠标到box的宽度 = 在浏览器页面内鼠标的纵轴 - 左上角的纵轴
+
+		// 按下鼠标时，传入 box 左上角坐标
+		aPos.push({x:box.offsetLeft, y:box.offsetTop})
+
+		// SetCapture()函数在属于当前线程的指定窗口里捕获鼠标输入。
+		// releaseCapture() 和 SetCapture() 要成对出现
+
+		// 下面为什么要写成这样？？？？？
+		this.setCapture && this.setCapture();
+
+		return false;
+	};
+
+	//拖拽开始
+	document.onmousemove = function (event){
+		if (!bDrag) return;
+		var event = event || window.event;
+		var iL = event.clientX - disX;
+		var iT = event.clientY - disY;
+		var maxL = document.documentElement.clientWidth - box.offsetWidth;
+		var maxT = document.documentElement.clientHeight - box.offsetHeight;
+
+		iL = iL < 0 ? 0 : iL; //如果iL小于0，那就令iL等于0；
+		iL = iL > maxL ? maxL : iL; //如果iL大于max，那就令iL等于max；
+
+		iT = iT < 0 ? 0 : iT;
+		iT = iT > maxT ? maxT : iT;
+
+		box.style.marginTop = box.style.marginLeft = 0;
+		box.style.left = iL + "px";
+		box.style.top = iT + "px";
+
+		aPos.push({x:iL, y:iT})
+
+		status();
+
+		return false
+	};
+
+	//鼠标释放, 结束拖拽
+	document.onmouseup = window.onblur = h2.onlosecapture = function (){
+		bDrag = false;
+		h2.releaseCapture && h2.releaseCapture();
+		status()
+	};
+
+	//回放拖动轨迹
+	a.onclick = function (){
+		if (aPos.length == 1) return;
+		var timer = setInterval(function (){
+			var oPos = aPos.pop();
+			oPos ? (box.style.left = oPos.x + "px", box.style.top = oPos.y + "px", status()) : clearInterval(timer)
+		}, 30);
+
+		this.focus = false;//去除链接虚线
+
+		return false
+	};
+
+	//阻止冒泡
+	a.onmousedown = function (event){
+		(event || window.event).cancelBubble = true
+	};
+
+	//监听状态函数
+	function status (){
+		span[0].innerHTML = bDrag;
+		span[1].innerHTML = box.offsetTop;
+		span[2].innerHTML = box.offsetLeft
+	}
+
+	//初始调用
+	status()
+};
+</script>
+
+</head>
+<body>
+<div id="box">
+    <h2><a href="javascript:;">点我回放拖动轨迹</a></h2>
+    <p><strong>正在拖拽吗：</strong><span></span></p>
+    <p><strong>距离头部距离:</strong><span></span></p>
+    <p><strong>距离左边距离:</strong><span></span></p>
+</div>
+</body>
+</html>
