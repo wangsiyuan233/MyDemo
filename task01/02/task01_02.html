@@ -32,17 +32,18 @@
 <link href="./css/green.css" rel="stylesheet" type="text/css"/>
 
 <script>
+
 window.onload = function (){
-	var oLink = document.getElementsByTagName("link")[0];//[0]就是整个
-	console.log(oLink)
+	var oLink = document.getElementsByTagName("link")[0];
 	var oSkin = document.getElementById("skin").getElementsByTagName("li");
 
 	for(var i = 0; i< oSkin.length; i++){
-		oSkin[i].onclick = function (){ // click是作用在 li 元素上的
-			for(var j in oSkin) //不是用 i 遍历了 li 元素吗，那么 j 是什么呢？
-			oSkin[j].className = "";
-			this.className = "current";
-			oLink['href'] = "./css/" + this.id + ".css"; //改变link的指向
+		oSkin[i].onclick = function (){
+			for(var j in oSkin){
+				oSkin[j].className = "";
+				this.className = "current";
+				oLink['href'] = "./css/" + this.id + ".css";}
+				//什么时候用[]呢？
 		}
 	}
 };

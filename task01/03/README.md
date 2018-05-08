@@ -1,6 +1,7 @@
 ## task01_03：函数接收参数并弹出
 
 【平均用时 0.2 天】
+【难度：❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task01/03/task01_03.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task01/03/task01_03.html)
 

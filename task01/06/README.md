@@ -1,6 +1,7 @@
 ## task01_06：记住密码提示框
 
 【平均用时 0.01 天】
+【难度：❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task01/06/task01_06.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task01/06/task01_06.html)
 
