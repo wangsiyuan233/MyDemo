@@ -30,6 +30,8 @@ var get = {
 	byId: function(id) {
 		return document.getElementById(id)
 	},
+
+	// 这一段是想干嘛？
 	byClass: function(sClass, oParent) {
 		var aClass = [];
 		var reClass = new RegExp("(^| )" + sClass + "( |$)");
@@ -42,14 +44,15 @@ var get = {
 		return (obj || document).getElementsByTagName(elem)
 	}
 };
+
+
 window.onload = function (){
 	var nav = get.byId("nav");
 	var li = get.byTagName("li", nav);
 	var subnav = get.byClass("subnav", nav);
 	var oSubNav = oEm = timer = null;
-	var i = 0;
 
-	for (i = 1; i < li.length; i++){
+	for (var i = 1; i < li.length; i++){
 		li[i].onmouseover = function (){
 			//隐藏所有子菜单
 			for (i = 0; i < subnav.length; i++)
@@ -57,7 +60,6 @@ window.onload = function (){
 
 			//获取该项下的子菜单
 			oSubNav = get.byClass("subnav", this)[0];
-			console.log(this)
 
 			//获取该项下的指示箭头
 			oEm = get.byTagName("em", this)[0];
@@ -92,9 +94,8 @@ window.onload = function (){
 		}
 	}
 };
-
-
 </script>
+
 </head>
 <body>
 <div id="nav">
