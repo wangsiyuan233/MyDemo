@@ -21,42 +21,37 @@ p{margin-top:10px;}
 
 <script type="text/javascript">
 window.onload = function (){
-	var oLabel = document.getElementsByTagName("label")[0]; /* 取第一个label标签 [全选]*/
-	var oA = document.getElementsByTagName("a")[0]; /* 取唯一一个超链接 [反选] */
+	var oLabel = document.getElementsByTagName("label")[0]; /* 取 [全选]*/
+	var oA = document.getElementsByTagName("a")[0]; /* 取 [反选] */
 	var oInput = document.getElementsByTagName("input"); /* 取所有的checkbox */
 
-	var isCheckAll = function (){
-		for (var i = 1, n = 0; i < oInput.length; i++){ //i 是选项小格子  n是选项小格子 + 全选按钮
-			oInput[i].checked && n++  //checked 属性设置 checkbox 是否应被选中。
-		}
-		oInput[0].checked = n == oInput.length - 1; // 这里就是 oInput 的长度（为11）。不关i的事儿。
-		 // [全选] = 所有选项小格子
-		oLabel.innerHTML = oInput[0].checked ? "全不选" : "全选" //只是一个值的改变
-	}; // 第一个全选标签的值 = 第一个checkbox[全选] ? "全不选" : "全选"
-
+	// var isCheckAll = function (){
+	// 	for (var i = 1, n = 0; i < oInput.length; i++){
+	// 		oInput[i].checked && n++
+	// 	}
+	// 	// [全选] = 所有选项小格子 = 也等于除了[全选]的剩下的小格子
+	// 	oInput[0].checked = n == oInput.length - 1;
+	//
+	// 	oLabel.innerHTML = oInput[0].checked ? "全不选" : "全选"
+	// };
+	// 第一个全选标签的值 = 第一个checkbox[全选] ? "全不选" : "全选"
 
 	//全选/全不选
-	oInput[0].onclick = function (){  //给全选按钮绑定一个事件
+	oInput[0].onclick = function (){
 		for (var i = 1; i < oInput.length; i++){
-			oInput[i].checked = this.checked   //this是指？？？
+			oInput[i].checked = this.checked
+			// this.checked = oInput[0].checked
+			// 费解啊
+			oLabel.innerHTML = oInput[0].checked ? "全不选" : "全选"
 		}
-		isCheckAll()
 	};
 
 	//反选
 	oA.onclick = function (){
 		for (var i = 1; i < oInput.length; i++){
-			oInput[i].checked = !oInput[i].checked //选中的按钮 = 没选中的
+			oInput[i].checked = !oInput[i].checked
 		}
-		isCheckAll()
 	};
-
-	//遍历所有的checkbox，只要点击了，就调用主函数
-	// for (var i = 1; i < oInput.length; i++){
-	// 	oInput[i].onclick = function (){
-	// 	isCheckAll()
-	// 	}
-	// };
 };
 </script>
 </head>

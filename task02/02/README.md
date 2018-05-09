@@ -1,6 +1,7 @@
 ## task02_02：点击弹窗
 
 【平均用时 0.01 天】
+【难度：❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task02/02/task02_02.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task02/02/task02_02.html)
 

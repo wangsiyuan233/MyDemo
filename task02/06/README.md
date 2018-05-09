@@ -1,6 +1,7 @@
 ## task02_06：图片变高清
 
 【平均用时 0.1 天】
+【难度：❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task02/06/task02_06.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task02/06/task02_06.html)
 

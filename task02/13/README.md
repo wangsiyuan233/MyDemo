@@ -1,6 +1,7 @@
 ## task02_13：全选/反选
 
 【平均用时 0.1 天】
+【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task02/13/task02_13.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task02/13/task02_13.html)
 

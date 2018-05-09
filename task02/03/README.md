@@ -1,6 +1,7 @@
 ## task02_03：数组求和
 
 【平均用时 0.03 天】
+【难度：❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task02/03/task02_03.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task02/03/task02_03.html)
 

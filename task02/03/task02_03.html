@@ -23,7 +23,7 @@ window.onload = function (){
 		//输入您的姓名： <input type="text" id="fname" onkeyup="upperCase(this.id)" />
 		this.value = this.value.replace(/[^(\d)|(,)]/,"")
 		//replace(旧，新)
-		// ^表示非   \d匹配一个数字 等价于[0-9]  |是或者
+		// ^表示非   \d匹配一个数字 等价于[0-9]  |是 或者
 		//不是数字或者不是半角逗号的输入，在你松开键盘的时候，就会被replace成''
 	}
 	oBtn.onclick = function (){
@@ -41,7 +41,11 @@ window.onload = function (){
 
 <body>
 <div id="outer">
-    <label><input type="text" value="1,2,3,4,5,6,7" /><span>输入数字求和，数字之间用半角","号分隔</span></label>
+    <label>
+			<input type="text" value="1,2,3,4,5,6,7" />
+			<span>输入数字求和，数字之间用半角","号分隔</span>
+		</label>
+
     <p><button>一键求和</button></p>
     <strong class="sum"></strong>
 </div>

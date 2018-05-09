@@ -1,6 +1,7 @@
 ## task02_08：Js切换选项卡
 
 【平均用时 0.03 天】
+【难度：❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task02/08/task02_08.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task02/08/task02_08.html)
 

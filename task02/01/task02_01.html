@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>task02_01：输入法</title>
+<title>task02_01：折叠/展开</title>
 
 <style>
 body,ul,li,button{margin:0;padding:0;}
@@ -21,12 +21,12 @@ button{cursor:pointer;}
 
 <script>
 window.onload = function (){
-	var oBtn = document.getElementsByTagName("button")[0];//什么时候有 0，什么时候没有呢？
+	var oBtn = document.getElementsByTagName("button")[0];
 	var oUl = document.getElementById("ul");
 	var oClose = document.getElementById("close");
 	var style = oUl.style;
 	oBtn.onclick = function(){
-		style.display = style.display == "block" ? "none" : "block"
+		style.display = style.display == "none" ? "block" : "none"
 	};
 	oClose.onclick = function(){
 		style.display = "none"
