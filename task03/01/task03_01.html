@@ -4,43 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>task03_02：判断非数字</title>
+<title>task03_01：查看数据类型</title>
 
 <style>
-body{font:12px/1.5 arial;text-align:center;}
-.input1{width:50px;border:1px solid #ccc;background:#f0f0f0;font-family:inherit;padding:3px;}
-span{color:green;padding-right:10px;font-weight:700;}
-strong{padding:0 10px;}
+pre{color:green;padding:10px 15px;background:#f0f0f0;border:1px dotted #333;font:12px/1.5 Courier New;}
+span{color:#999;}
 </style>
-
-<script type="text/javascript">
-window.onload = function (){
-	var aInput = document.getElementsByTagName("input");
-	var aSpan = document.getElementsByTagName("span")[0];
-
-	for (var i = 0; i < aInput.length - 1; i++){
-		aInput[i].onkeyup = function (){
-			this.value = this.value.replace(/[^\d]/,"")
-		}
-	}
-
-	aInput[2].onclick = function (){
-		(aInput[0].value == "" || aInput[1].value == "") ?
-		alert("请输入数字！") :
-		aSpan.innerHTML = parseInt(aInput[0].value) + parseInt(aInput[1].value);
-	}
-};
-</script>
-
 </head>
 <body>
-
-<input type="text" value="6" class="input1" />
-<strong>+</strong>
-<input type="text" value="17" class="input1" />
-<strong>=</strong>
-<span>?</span>
-<input type="button" value="求和" />
-
+<pre>
+&lt;script type="text/javascript"&gt;
+    alert(typeof 12345);	<span>//输出number</span>
+    alert(typeof "abc");	<span>//输出string</span>
+    alert(typeof document);	<span>//输出object</span>
+&lt;/script&gt;
+</pre>
+<script>
+alert("typeof 12345 → " + typeof 12345 + "\
+	  \n\ntypeof \"abc\" → " + typeof "abc" + "\
+	  \n\ntypeof document → " + typeof document
+	  );
+</script>
 </body>
 </html>

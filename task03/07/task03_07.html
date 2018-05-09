@@ -32,22 +32,22 @@ body{font:700 24px/1.5 Arial;}
 
 <script>
 window.onload = function (){
-	var oCalc = document.getElementById("calc");
-	var aA = oCalc.getElementsByTagName("a");
-	var aInput = oCalc.getElementsByTagName("input")[0];
-	var oFormula = document.getElementById("formula");
+	var calc = document.getElementById("calc");
+	var a = calc.getElementsByTagName("a");
+	var input = calc.getElementsByTagName("input")[0];// 第一个input
+	var formula = document.getElementById("formula"); //最后一个input
 	var s = false;
 	var i = 0;
 
-	for (i = 0; i < aA.length; i++){
-		aA[i].onfocus = function (){
+	for (i = 0; i < a.length; i++){
+		a[i].onfocus = function (){
 			this.blur() //blur() 方法用于从链接上移开焦点。
 		};
-		aA[i].onclick = function (){
+		a[i].onclick = function (){
 			switch(this.innerHTML){
 				case "c":
-					aInput.value =  0;
-					oFormula.value = "";
+					input.value =  0; // 输入结果为 0
+					formula.value = ""; // 计算结果为空
 					break;
 				case "%":
 					count("%")
@@ -66,18 +66,19 @@ window.onload = function (){
 					break;
 				case "=":
 					// flase 或 最后的值 = 最后的值 + 输入的值
-					s || (oFormula.value += aInput.value);
+					s || (formula.value += input.value);
 					// eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。
-					aInput.value = eval(oFormula.value.replace(/\%\/\*\-\+/,''));
-					aInput.value = aInput.value.substr(0,10).replace("NaN",0);
+					input.value = eval(formula.value.replace(/\%\/\*\-\+/,''));
+					//substr() 方法可在字符串中抽取从 start 下标开始的指定数目的字符。
+					input.value = input.value.substr(0,10).replace("NaN",0);
 					s = true;
 					break;
 				case ".":
-					if(aInput.value.search(/[\.\%\/\*\-\+]/) != -1)
+					if(input.value.search(/[\.\%\/\*\-\+]/) != -1)
 					break;
 				default:
-					s && (aInput.value = 0, oFormula.value = "", s = false);
-					aInput.value.length < 10 && (aInput.value = (aInput.value + this.innerHTML).replace(/^[0\%\/\*\-\+](\d)/,"$1"));
+					s && (input.value = 0, formula.value = "", s = false);
+					input.value.length < 10 && (input.value = (input.value + this.innerHTML).replace(/^[0\%\/\*\-\+](\d)/,"$1"));
 			}
 		}
 	}
@@ -85,16 +86,16 @@ window.onload = function (){
 	function count(a){
 
 		if(s){
-			oFormula.value = aInput.value + a;
-			aInput.value = a;
+			formula.value = input.value + a;
+			input.value = a;
 			s = false;
 		}
 
 		else{
-			/[\%\/\*\-\+]$/.test(aInput.value) || (oFormula.value += aInput.value);
-			aInput.value = a;
-			/[\%\/\*\-\+]$/.test(oFormula.value) || (oFormula.value += aInput.value);
-			oFormula.value = oFormula.value.slice(-1) != a ? oFormula.value.replace(/.$/,a) : oFormula.value
+			/[\%\/\*\-\+]$/.test(input.value) || (formula.value += input.value);
+			input.value = a;
+			/[\%\/\*\-\+]$/.test(formula.value) || (formula.value += input.value);
+			formula.value = formula.value.slice(-1) != a ? formula.value.replace(/.$/,a) : formula.value
 		}
 	}
 }
@@ -102,28 +103,27 @@ window.onload = function (){
 </head>
 <body>
 <div id="calc">
-    <p>By wangsiyuan233.cn</p>
 		<!--readonly 属性规定输入字段为只读。-->
     <input class="f-text" type="text" readonly="readonly" maxlength="9" value="0" />
     <ul>
-        <li class="btn-1"><a href="javascript:void(0)">c</a></li>
-        <li class="btn-1"><a href="javascript:void(0)">%</a></li>
-        <li class="btn-1"><a href="javascript:void(0)">÷</a></li>
-        <li class="btn-1"><a href="javascript:void(0)">×</a></li>
-        <li><a href="javascript:void(0)">7</a></li>
-        <li><a href="javascript:void(0)">8</a></li>
-        <li><a href="javascript:void(0)">9</a></li>
-        <li class="btn-1"><a href="javascript:void(0)">-</a></li>
-        <li><a href="javascript:void(0)">4</a></li>
-        <li><a href="javascript:void(0)">5</a></li>
-        <li><a href="javascript:void(0)">6</a></li>
-        <li class="btn-1"><a href="javascript:void(0)">+</a></li>
-        <li><a href="javascript:void(0)">1</a></li>
-        <li><a href="javascript:void(0)">2</a></li>
-        <li><a href="javascript:void(0)">3</a></li>
-        <li class="btn-2"><a href="javascript:void(0)">=</a></li>
-        <li class="btn-3"><a href="javascript:void(0)">0</a></li>
-        <li><a href="javascript:void(0)">.</a></li>
+        <li class="btn-1"><a href="#">c</a></li>
+        <li class="btn-1"><a href="#">%</a></li>
+        <li class="btn-1"><a href="#">÷</a></li>
+        <li class="btn-1"><a href="#">×</a></li>
+        <li><a href="#">7</a></li>
+        <li><a href="#">8</a></li>
+        <li><a href="#">9</a></li>
+        <li class="btn-1"><a href="#">-</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+        <li class="btn-1"><a href="#">+</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li class="btn-2"><a href="#">=</a></li>
+        <li class="btn-3"><a href="#">0</a></li>
+        <li><a href="#">.</a></li>
     </ul>
     <input id="formula" type="text" readonly="readonly" value="" />
 </div>

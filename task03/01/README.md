@@ -1,6 +1,7 @@
 ## task03_01：查看数据类型
 
 【平均用时 0.01 天】
+【难度：❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task03/01/task03_01.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task03/01/task03_01.html)
 
