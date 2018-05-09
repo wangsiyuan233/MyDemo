@@ -17,6 +17,7 @@
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task01/02/task01_02.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task01/02/task01_02.html)<br>
 **【小结：】用JS改变引用的CSS的路径**
+
 ----------
 ### task02系列
 
@@ -79,6 +80,7 @@ oInput.onkeyup = function (){this.value = this.value.replace(/[^(\d)|(,)]/,"")};
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task02/13/task02_13.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task02/13/task02_13.html)<br>
 **【小结：】 `oInput[i].checked = this.checked`**
+
 ----------
 ### task03系列
 
