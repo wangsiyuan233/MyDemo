@@ -16,12 +16,13 @@ input{border:0;color:#fff;cursor:pointer;font-weight:700;background:#990000;padd
 function css(obj, attr, value){
 	switch (arguments.length){
 		case 2:
-			if(typeof arguments[1] == "object"){	//二个参数, 如果第二个参数是对象, 批量设置属性
-				for (var i in attr)
-        obj.style[i] = attr[i]
+			if(typeof arguments[1] == "object"){	//二个参数, 如果第二个参数是【对象】, 批量设置属性
+				for (var i in attr){obj.style[i] = attr[i]}
 			}
-			else{	//二个参数, 如果第二个参数是字符串, 读取属性值
+			else{	//二个参数, 如果第二个参数是【字符串】, 读取属性值
 				return getComputedStyle(obj, null)[attr]
+				//getComputedStyle 方法可用来获取元素中所有可用的css属性列表，以数组形式返回，并且是只读的。
+				//getComputedStyle(元素，伪类)
         // return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, null)[attr]
         // obj.currentStyle 是给IE用的
 			}

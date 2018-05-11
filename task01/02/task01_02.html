@@ -42,8 +42,11 @@ window.onload = function (){
 			for(var j in oSkin){
 				oSkin[j].className = "";
 				this.className = "current";
-				oLink['href'] = "./css/" + this.id + ".css";}
+				// oLink['href'] = "./css/" + this.id + ".css";}
+				oLink.href = "./css/" + this.id + ".css";}
 				//什么时候用[]呢？
+				// 如果key值并不确定，是一个变量的时候，则只能通过obj[someKey]的方式访问。
+				// 上面两种写法都是可以的~
 		}
 	}
 };

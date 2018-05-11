@@ -27,7 +27,7 @@ window.onload = function (){
 	var ul = document.getElementsByTagName("ul");
 	var img = ul[0].getElementsByTagName("li");
 	var num = ul[1].getElementsByTagName("li");
-	var timer = play = null; // 为什么？ 不是0？ 不是 undefined?
+	var timer = play = false;
 	var i = index = 0;
 
 // 我有两个闹钟，我砸了三次闹钟
@@ -44,7 +44,7 @@ window.onload = function (){
 			// console.log(index >= img.length && (index = 0))
 			// 打印出一个false
 			show(index);
-		},2000);
+		},1800);
 	}
 
 //淡入
@@ -70,8 +70,7 @@ window.onload = function (){
 		timer = setInterval(function () {
 			alpha += 10;
 			// alpha 大于等于100 时
-			// alpha > 100 && (alpha =100);
-
+			alpha > 100 && (alpha =100);
 			// console.log(alpha > 100 && (alpha =100))
 			// 打印出9个false
 			img[index].style.opacity = alpha / 100;

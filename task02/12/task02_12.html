@@ -24,7 +24,8 @@ window.onload = function (){
 
 	for (var i = 1; i < oImg.length; i++){
 		oImg[i].onmouseover = function (){
-			var img = new Image(); //new一个函数意味着？
+			var img = new Image();
+			//new一个函数意味着 节约内存
 			img.src = oImg[0].src = this.src.replace();
 			/* 新图片集合的地址 = 第一张大图的地址 = 此时此刻选中的小图的转换*/
 		}

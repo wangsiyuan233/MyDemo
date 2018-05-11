@@ -31,7 +31,7 @@ var get = {
 		return document.getElementById(id)
 	},
 
-	// 这一段是想干嘛？
+	// 为什么不能直接用 getElementByClassName ?
 	byClass: function(sClass, oParent) {
 		var aClass = [];
 		var reClass = new RegExp("(^| )" + sClass + "( |$)");
@@ -40,6 +40,7 @@ var get = {
 		reClass.test(aElem[i].className) && aClass.push(aElem[i]);
 		return aClass
 	},
+
 	byTagName: function(elem, obj) {
 		return (obj || document).getElementsByTagName(elem)
 	}
@@ -47,22 +48,32 @@ var get = {
 
 
 window.onload = function (){
-	var nav = get.byId("nav");
-	var li = get.byTagName("li", nav);
+	// var nav = get.byId("nav");
+	var nav = document.getElementById('nav');
+	var li = document.getElementsByTagName('li')
+
+	//console.log(subnav) // 打印了有七个元素的数组：[行业资讯,...服务器]
 	var subnav = get.byClass("subnav", nav);
+	// var subnav = document.getElementByClassName('subnav')
+	// 为什么不能直接用 getElementByClassName ?
+
 	var oSubNav = oEm = timer = null;
 
 	for (var i = 1; i < li.length; i++){
 		li[i].onmouseover = function (){
+
 			//隐藏所有子菜单
 			for (i = 0; i < subnav.length; i++)
 			subnav[i].style.display = "none";
 
 			//获取该项下的子菜单
+			//console.log(oSubNav) //打印了整个subnav div 的内容
 			oSubNav = get.byClass("subnav", this)[0];
+			//这里的 this 是什么？
+			// oSubNav 这个东西不是为null吗？
 
 			//获取该项下的指示箭头
-			oEm = get.byTagName("em", this)[0];
+			oEm = document.getElementsByTagName('em')[0];
 
 			//显示该项下的子菜单
 			oSubNav.style.display = "block";
@@ -100,25 +111,25 @@ window.onload = function (){
 <body>
 <div id="nav">
     <ul>
-        <li><a href="#">前端之家</a></li>
-        <li>
-            <a href="#">行业资讯</a>
-            <div class="subnav">
-                <em class="arrow"></em>
-                <p>
-                    <span>
-                        <a href="#">业界动态</a>|
-                        <a href="#">收购融资</a>|
-                        <a href="#">门户动态</a>|
-                        <a href="#">搜索引擎</a>|
-                        <a href="#">网络游戏</a>|
-                        <a href="#">电子商务</a>|
-                        <a href="#">广告传媒</a>|
-                        <a href="#">厂商开发</a>
-                    </span>
-                </p>
-            </div>
-        </li>
+      <li><a href="#">前端之家</a></li>
+      <li>
+	      <a href="#">行业资讯</a>
+	      <div class="subnav">
+	        <em class="arrow"></em>
+	        <p>
+            <span>
+              <a href="#">业界动态</a>|
+              <a href="#">收购融资</a>|
+              <a href="#">门户动态</a>|
+              <a href="#">搜索引擎</a>|
+              <a href="#">网络游戏</a>|
+              <a href="#">电子商务</a>|
+              <a href="#">广告传媒</a>|
+              <a href="#">厂商开发</a>
+            </span>
+	        </p>
+	      </div>
+      </li>
         <li>
             <a href="#">站长在线</a>
             <div class="subnav">
