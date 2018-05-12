@@ -1,4 +1,4 @@
-## task06_06：会跑的小人
+## task06_06：苹果任务栏
 
 【平均用时 0.2 天】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task06/06/task06_06.html)

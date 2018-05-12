@@ -4,118 +4,170 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>task06_01：完美拖拽</title>
+<title>task06_01：二级导航栏</title>
 
 <style type="text/css">
-html,body{overflow:hidden;}
-body,div,h2,p{margin:0;padding:0;}
-body{color:#fff;background:#000;font:12px/2 Arial;}
-p{padding:0 10px;margin-top:10px;}
-span{color:#ff0;padding-left:5px;}
-#box{position:absolute;width:300px;height:150px;background:#333;border:2px solid #ccc;top:50%;left:50%;margin:-75px 0 0 -150px;}
-#box h2{height:25px;cursor:move;background:#222;border-bottom:2px solid #ccc;text-align:right;padding:0 10px;}
-#box h2 a{color:#fff;font:12px/25px Arial;text-decoration:none;outline:none;}
+body,div,dl,dt,dd,ul,li{margin:0;padding:0;}
+li{list-style:none;}
+body{font:12px/1.5 Arial;background:url(img/bg.jpg) repeat-x #1A1A1A;}
+#wrap{position:relative;width:990px;margin:0 auto;}
+#nav{height:67px;padding-top:24px;background:url(img/nav.jpg) no-repeat;}
+#nav ul{height:67px;overflow:hidden;padding-left:6px;}
+#nav ul li{float:left;height:67px;}
+#nav ul li a{height:67px;display:block;overflow:hidden;text-indent:-9999px;background:url(img/nav.jpg) -999px -999px no-repeat;}
+#m1,#s1{width:53px;}
+#m5,#s5{width:89px;}
+#m6,#s6{width:89px;margin-left:184px;}
+#m10,#s10{width:51px;}
+#m1.current a,#m1 a:hover{background-position:-6px -115px;}
+#m2.current a,#m2 a:hover{background-position:-59px -115px;}
+#m3.current a,#m3 a:hover{background-position:-143px -115px;}
+#m4.current a,#m4 a:hover{background-position:-231px -115px;}
+#m5.current a,#m5 a:hover{background-position:-319px -115px;}
+#m6.current a,#m6 a:hover{background-position:-592px -115px;}
+#m7.current a,#m7 a:hover{background-position:-681px -115px;}
+#m8.current a,#m8 a:hover{background-position:-768px -115px;}
+#m9.current a,#m9 a:hover{background-position:-852px -115px;}
+#m10.current a,#m10 a:hover{background-position:-939px -115px;}
+#sub{position:absolute;width:984px;left:6px;top:91px;height:0;overflow:hidden;background:url(img/subbg.jpg) no-repeat;}
+#sub ul{float:left;padding-top:21px;}
+#sub ul.current{background:url(img/hig.jpg) repeat-x;}
+#sub ul li{height:21px;line-height:21px;}
+#sub ul li a{color:#B4B4B4;padding-left:15px;text-decoration:none;}
+#sub ul li a:hover{color:#03FAE5;background:url(img/arr.gif) 8px 50% no-repeat;}
+#banner{height:230px;background:url(img/banner.jpg) 0 0 no-repeat;}
+#copyright{color:#7A7A7A;height:50px;line-height:50px;text-align:center;border-top:2px solid #381519;}
+#copyright a{color:#FFF;background:#7A7A7A;border-radius:10px;text-decoration:none;padding:2px 5px;}
+#m2,#s2,#m8,#s8{width:84px;}
+#m3,#s3,#m4,#s4{width:88px;}
+#m7,#s7,#m9,#s9{width:87px;}
 </style>
 
+
 <script type="text/javascript">
-window.onload=function (){
-	var box = document.getElementById("box");
-	var h2 = box.getElementsByTagName("h2")[0];
-	var a = box.getElementsByTagName("a")[0];
-	var span = box.getElementsByTagName("span");
-	var disX = disY = 0; //鼠标在box内的坐标 初始值为 0
-	var bDrag = false;
-	var aPos = [];
-
-	//鼠标按下, 激活拖拽
-	h2.onmousedown = function (event){
-		var event = event || window.event;
-		bDrag = true;
-		disX = event.clientX - box.offsetLeft; // 鼠标到box的长度 = 在浏览器页面内鼠标的横轴 - 左上角的横轴
-		disY = event.clientY - box.offsetTop; // 鼠标到box的宽度 = 在浏览器页面内鼠标的纵轴 - 左上角的纵轴
-
-		// 按下鼠标时，传入 box 左上角坐标
-		aPos.push({x:box.offsetLeft, y:box.offsetTop})
-
-		// SetCapture()函数在属于当前线程的指定窗口里捕获鼠标输入。
-		// releaseCapture() 和 SetCapture() 要成对出现
-
-		// 下面为什么要写成这样？？？？？
-		this.setCapture && this.setCapture();
-
-		return false;
+window.onload = function() {
+	var oNav = document.getElementById("nav").getElementsByTagName("ul")[0];
+	var oSub = document.getElementById("sub");
+	var aNav = oNav.getElementsByTagName("li");
+	var aSub = oSub.getElementsByTagName("ul");
+	var timer = null;
+	var i = 0;
+	//二级菜单显示
+	oNav.onmouseover = oSub.onmouseover = function() {
+		clearTimeout(timer);
+		doMove(oSub, 153);
 	};
-
-	//拖拽开始
-	document.onmousemove = function (event){
-		if (!bDrag) return;
-		var event = event || window.event;
-		var iL = event.clientX - disX;
-		var iT = event.clientY - disY;
-		var maxL = document.documentElement.clientWidth - box.offsetWidth;
-		var maxT = document.documentElement.clientHeight - box.offsetHeight;
-
-		iL = iL < 0 ? 0 : iL; //如果iL小于0，那就令iL等于0；
-		iL = iL > maxL ? maxL : iL; //如果iL大于max，那就令iL等于max；
-
-		iT = iT < 0 ? 0 : iT;
-		iT = iT > maxT ? maxT : iT;
-
-		box.style.marginTop = box.style.marginLeft = 0;
-		box.style.left = iL + "px";
-		box.style.top = iT + "px";
-
-		aPos.push({x:iL, y:iT})
-
-		status();
-
-		return false
+	//二级菜单隐藏
+	oNav.onmouseout = oSub.onmouseout = function() {
+		timer = setTimeout(function() {
+			doMove(oSub, 0);
+		}, 200);
 	};
-
-	//鼠标释放, 结束拖拽
-	document.onmouseup = window.onblur = h2.onlosecapture = function (){
-		bDrag = false;
-		h2.releaseCapture && h2.releaseCapture();
-		status()
+	//菜单当前位置
+	for(i = 0; i < aNav.length; i++) {
+		(function(index) {
+			aNav[index].onmouseover = aSub[index].onmouseover = function() {
+				for(i = 0; i < aNav.length; i++) aNav[i].className = aSub[i].className = "";
+				index && (aNav[index].className = aSub[index].className = "current");
+			};
+			aNav[index].onmouseout = aSub[index].onmouseout = function() {
+				aNav[index].className = aSub[index].className = "";
+			};
+		})(i);
 	};
-
-	//回放拖动轨迹
-	a.onclick = function (){
-		if (aPos.length == 1) return;
-		var timer = setInterval(function (){
-			var oPos = aPos.pop();
-			oPos ? (box.style.left = oPos.x + "px", box.style.top = oPos.y + "px", status()) : clearInterval(timer)
-		}, 30);
-
-		this.focus = false;//去除链接虚线
-
-		return false
-	};
-
-	//阻止冒泡
-	a.onmousedown = function (event){
-		(event || window.event).cancelBubble = true
-	};
-
-	//监听状态函数
-	function status (){
-		span[0].innerHTML = bDrag;
-		span[1].innerHTML = box.offsetTop;
-		span[2].innerHTML = box.offsetLeft
-	}
-
-	//初始调用
-	status()
 };
+function doMove(obj, iTarget) {
+	clearInterval(obj.timer);
+	obj.timer = setInterval(function() {
+		var iSpeed = (iTarget - obj.offsetHeight) / 5;
+		iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+		obj.offsetHeight == iTarget ? clearInterval(obj.timer) : (obj.style.height = iSpeed + obj.offsetHeight + "px");
+	}, 30);
+}
 </script>
-
 </head>
 <body>
-<div id="box">
-    <h2><a href="javascript:;">点我回放拖动轨迹</a></h2>
-    <p><strong>正在拖拽吗：</strong><span></span></p>
-    <p><strong>距离头部距离:</strong><span></span></p>
-    <p><strong>距离左边距离:</strong><span></span></p>
+<div id="wrap">
+    <div id="nav">
+        <ul>
+            <li id="m1"><a href="javascript:;">首页</a></li>
+            <li id="m2"><a href="javascript:;">火线报道</a></li>
+            <li id="m3"><a href="javascript:;">游戏指南</a></li>
+            <li id="m4"><a href="javascript:;">下载中心</a></li>
+            <li id="m5"><a href="javascript:;">快速通道</a></li>
+            <li id="m6"><a href="javascript:;">火线专区</a></li>
+            <li id="m7"><a href="javascript:;">特色系统</a></li>
+            <li id="m8"><a href="javascript:;">玩家互动</a></li>
+            <li id="m9"><a href="javascript:;">腾讯客服</a></li>
+            <li id="m10"><a href="javascript:;">论坛</a></li>
+        </ul>
+    </div>
+    <!--/nav-->
+    <div id="sub">
+        <ul id="s1"></ul>
+        <ul id="s2">
+            <li><a href="javascript:;">新闻</a></li>
+            <li><a href="javascript:;">公告</a></li>
+            <li><a href="javascript:;">活动</a></li>
+            <li><a href="javascript:;">赛事</a></li>
+        </ul>
+        <ul id="s3">
+            <li><a href="javascript:;">新兵上路</a></li>
+            <li><a href="javascript:;">游戏资料</a></li>
+            <li><a href="javascript:;">常见问题</a></li>
+        </ul>
+        <ul id="s4">
+            <li><a href="javascript:;">游戏下载</a></li>
+            <li><a href="javascript:;">精美壁纸</a></li>
+            <li><a href="javascript:;">主题歌曲</a></li>
+            <li><a href="javascript:;">火线杂志</a></li>
+            <li><a href="javascript:;">连载小说</a></li>
+        </ul>
+        <ul id="s5">
+            <li><a href="javascript:;">体验服</a></li>
+            <li><a href="javascript:;">封号查询</a></li>
+            <li><a href="javascript:;">BUG提交</a></li>
+            <li><a href="javascript:;">游戏安全</a></li>
+            <li><a href="javascript:;">防沉迷</a></li>
+            <li><a href="javascript:;">反外挂专题</a></li>
+        </ul>
+        <ul id="s6">
+            <li><a href="javascript:;">活动专区</a></li>
+            <li><a href="javascript:;">版本专区</a></li>
+            <li><a href="javascript:;">大赛专区</a></li>
+            <li><a href="javascript:;">视频专区</a></li>
+            <li><a href="javascript:;">QQ会员专区</a></li>
+            <li><a href="javascript:;">CDKEY专区</a></li>
+        </ul>
+        <ul id="s7">
+            <li><a href="javascript:;">战队系统</a></li>
+            <li><a href="javascript:;">荣誉系统</a></li>
+        </ul>
+        <ul id="s8">
+            <li><a href="javascript:;">战术攻略</a></li>
+            <li><a href="javascript:;">玩家相册</a></li>
+            <li><a href="javascript:;">玩家视频</a></li>
+            <li><a href="javascript:;">玩家截图</a></li>
+            <li><a href="javascript:;">官方博客</a></li>
+            <li><a href="javascript:;">官方微博</a></li>
+        </ul>
+        <ul id="s9">
+            <li><a href="javascript:;">客户服务</a></li>
+            <li><a href="javascript:;">用户协议</a></li>
+            <li><a href="javascript:;">玩家条例</a></li>
+            <li><a href="javascript:;">网友互助</a></li>
+        </ul>
+        <ul id="s10">
+            <li><a href="javascript:;">论坛</a></li>
+            <li><a href="javascript:;">搜吧</a></li>
+        </ul>
+    </div>
+    <!--/sub-->
+    <div id="banner"></div>
+    <!--/banner-->
 </div>
+<!--/wrap-->
+<div id="copyright">如蒙转载请注明出处 <a href="http://js.fgm.cc">wangsiyuan233.cn</a></div>
+<!--/copyright-->
 </body>
 </html>

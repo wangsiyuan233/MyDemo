@@ -1,4 +1,4 @@
-## task06_01：完美拖拽
+## task06_01：二级导航栏
 
 【平均用时 0.2 天】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task06/01/task06_01.html)

@@ -55,11 +55,12 @@
 ## task04_08：绑定事件练习
 
 【平均用时 0.1 天】
+【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/08/task04_08.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/08/task04_08.html)
 
 ## task04_09：淘宝五星好评
-
+【难度：❀ ❀ ❀ ❀】
 【平均用时 0.1 天】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/09/task04_09.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/09/task04_09.html)

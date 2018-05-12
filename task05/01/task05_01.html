@@ -33,8 +33,7 @@ window.onload = function(){
   span.onclick = function(event){
     ul.style.display = ul.style.display == "block" ? "none" : "block";
 
-
-		// 为什么我需要阻止冒泡事件的发生？
+		// 为什么需要阻止冒泡事件的发生？
     (event||window.event).cancelBubble = true;
   }
 
