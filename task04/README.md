@@ -2,7 +2,7 @@
 
 ### task04系列
 
-## task04_01：二级nav
+## task04_01：自动生成表格
 
 【平均用时 0.1 天】
 【难度：❀ ❀ ❀ ❀】
@@ -59,9 +59,4 @@
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/08/task04_08.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/08/task04_08.html)
 
-## task04_09：自动生成表格
 
-【平均用时 0.1 天】
-【难度：❀ ❀ ❀】
-[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/09/task04_09.html)
-[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/09/task04_09.html)

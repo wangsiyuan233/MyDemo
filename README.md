@@ -139,5 +139,63 @@ this.className = this.className == '' ? "cancel" : '';
 ----------
 ### task04系列
 
+## task04_01：自动生成表格
+
+【平均用时 0.1 天】
+【难度：❀ ❀ ❀ ❀】
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/01/task04_01.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/01/task04_01.html)
+**【小结：】**
+
+## task04_02：单方向轮播
+
+【平均用时 0.1 天】
+【难度：❀ ❀ ❀】
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/02/task04_02.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/02/task04_02.html)
+**【小结：】我有两个闹钟，砸了三次闹钟**
+
+## task04_03：来回轮播
+
+【平均用时 0.1 天】
+【难度：❀ ❀ ❀】
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/03/task04_03.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/03/task04_03.html)
+**【小结：】**
+//判断播放顺序
+`order ? index++ : index--;`
+
+//正序 打印结果是false
+`index >= img.length && (index = img.length - 2, order = false);`
+
+//倒序 打印结果是false
+`index <= 0 && (index = 0, order = true);`
+			
+
+## task04_05：一键读取css属性
+
+【平均用时 0.1 天】
+【难度：❀ ❀ ❀】
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/05/task04_05.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/05/task04_05.html)
+**【小结：】**
+`return getComputedStyle(obj, null)[attr]`
+
+## task04_07：数组专项
+
+【平均用时 0.1 天】
+【难度：❀ ❀ ❀】
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/07/task04_07.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/07/task04_07.html)
+**【小结：】删除、替换、插入**
+
+## task04_08：绑定事件练习
+
+【平均用时 0.1 天】
+【难度：❀ ❀ ❀】
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/08/task04_08.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/08/task04_08.html)
+**【小结：】**
+`addHandler`/`removeHandler`/`addLoadHandler`
 
 

@@ -4,228 +4,112 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>task04_01：二级nav</title>
+<title>task04_01：自动生成表格</title>
 
 <style>
-body,div,ul,li,p{margin:0;padding:0;}
-body{font:12px/1.5 Arial;}
-ul{list-style-type:none;}
-#nav,#nav ul,#nav ul li,#nav ul li a:hover,#nav .subnav,#nav .subnav p,#nav .subnav p span,#nav .subnav .arrow{background:url(img/nav_bg.png) no-repeat;}
-#nav{position:relative;width:910px;background-position:0 -36px;margin:10px auto;}
-#nav ul{height:36px;line-height:36px;margin-left:10px;padding-right:10px;overflow:hidden;background-position:right -72px;}
-#nav ul li{float:left;width:110px;margin-left:-2px;background-position:0 -108px;}
-#nav ul li a{font-size:14px;color:#fff;width:102px;display:block;text-align:center;text-decoration:none;margin:0 2px 0 4px;}
-#nav ul li a:hover{font-weight:700;background-position:-3px -144px;}
-#nav .subnav{display:none;position:absolute;top:41px;width:auto!important;min-width:110px;height:27px;line-height:27px;white-space:nowrap;background-position:0 -180px;}
-#nav .subnav p{margin-left:10px;padding-right:10px;background-position:right -234px;}
-#nav .subnav p span{display:block;color:#235e99;background-repeat:repeat-x;background-position:0 -207px;}
-#nav .subnav p a{font-size:12px;display:inline;color:#235e99;text-decoration:none;margin:0 5px;padding:0 2px;}
-#nav .subnav p a:hover{font-weight:400;background-image:none;border-bottom:2px solid;}
-#nav .subnav .arrow{position:absolute;top:-4px;display:block;width:11px;height:5px;background-position:0 -261px;}
+body{font:700 14px/1.5 Arial;margin:0;padding:0 10px;}
+table{clear:both;border:1px solid #000;}
+td{color:#FFF;cursor:pointer;text-align:center;border:1px solid #000;padding:5px;}
+#setting{float:left;clear:left;line-height:28px;margin:10px 0;}
+#setting input{width:50px;font-family:inherit;border:2px solid #CCC;margin:0 5px;padding:4px;}
+#btn{font-size:14px;line-height:18px;color:#fff;text-decoration:none;background:#353535;border-top:1px #999 solid;border-radius:5px;padding:4px 6px;}
+#msg{float:left;clear:both;height:25px;display:none;line-height:25px;margin-bottom:10px;}
+#msg em{width:25px;height:25px;display:inline-block;margin-right:5px;}
+#setting label,#setting input,#setting a,#msg span,#msg em{float:left;}
 </style>
-
-<script type="text/javascript">
-
-var get = {
-	byId: function(id) {
-		return document.getElementById(id)
+<script>
+/*
+ 要求：
+ 1) 任意输入行数或列数, 生成对应表格;
+ 2) 行数, 列数必须为正整数类型, 否则提示非法;(这里我用正则限制1-100, 避免网友测试输入过大值造成浏览器假死)
+ 3) 在生成表格的单元格中随机填入1到15之间的随机数, 并给每个单元格设置随机背景颜色;
+ 4) 点击任意单元格, 将其数和背景颜色输出显示;
+ 5) 效率要求：100*100生成表格时间小于3秒;
+ 6) 代码中要用到事件代理机制;
+ 7) 设计一种简单机制, 使单元格数小于255*255*255时, 颜色不重复
+ 8) 要求符合w3c验证, 兼容IE, Firefox, chrome等浏览器
+*/
+function CreateTable() {
+	this.oTable  = null;
+	this.bgColor = 0;
+}
+CreateTable.prototype = {
+	init: function(row, col) {
+		var oFrag = document.createDocumentFragment();
+		var oTemp = document.createElement("div");
+		var oBody = document.body;
+		var aRow  = [];
+		var aCol  = [];
+		for(var i = row; i--;) {
+			aCol.length = 0;
+			for(var j = col; j--;) {
+				this.bgColor = this.getRanColor();
+				aCol.push("<td style=\"background:"+ this.bgColor +";\">"+this.randomRange(1, 15)+"</td>");
+			}
+			aRow.push("<tr>"+ aCol.join("") +"</tr>")
+		}
+		oTemp.innerHTML = "";
+		oTemp.innerHTML = "<table><tbody>"+ aRow.join("") +"</tbody></table>";
+		while(oTemp.firstChild) oFrag.appendChild(oTemp.firstChild);
+		this.oTable && oBody.removeChild(this.oTable);
+		oBody.appendChild(oFrag);
+		this.oTable = oBody.lastChild
 	},
-
-	// 为什么不能直接用 getElementByClassName ?
-	byClass: function(sClass, oParent) {
-		var aClass = [];
-		var reClass = new RegExp("(^| )" + sClass + "( |$)");
-		var aElem = this.byTagName("*", oParent);
-		for (var i = 0; i < aElem.length; i++)
-		reClass.test(aElem[i].className) && aClass.push(aElem[i]);
-		return aClass
+	randomRange: function(lower, upper) {
+		return Math.floor(Math.random() * (upper - lower + 1) + lower)
 	},
-
-	byTagName: function(elem, obj) {
-		return (obj || document).getElementsByTagName(elem)
+	getRanColor: function() {
+		var str = this.randomRange(0, 0xF0F0F0).toString(16);
+		while(str.length < 6) str = "0" + str;
+		return "#" + (this.bgColor.toString().replace("#", "").toString(10) === str.toString(10) ? str + 100000 : str)
 	}
 };
 
+window.onload = function() {
+	var oTab = new CreateTable();
+	var oRow = document.getElementById("row");
+	var oCol = document.getElementById("col");
+	var oBtn = document.getElementById("btn");
+	var oMsg = document.getElementById("msg");
 
-window.onload = function (){
-	// var nav = get.byId("nav");
-	var nav = document.getElementById('nav');
-	var li = document.getElementsByTagName('li')
-
-	//console.log(subnav) // 打印了有七个元素的数组：[行业资讯,...服务器]
-	var subnav = get.byClass("subnav", nav);
-	// var subnav = document.getElementByClassName('subnav')
-	// 为什么不能直接用 getElementByClassName ?
-
-	var oSubNav = oEm = timer = null;
-
-	for (var i = 1; i < li.length; i++){
-		li[i].onmouseover = function (){
-
-			//隐藏所有子菜单
-			for (i = 0; i < subnav.length; i++)
-			subnav[i].style.display = "none";
-
-			//获取该项下的子菜单
-			//console.log(oSubNav) //打印了整个subnav div 的内容
-			oSubNav = get.byClass("subnav", this)[0];
-			//这里的 this 是什么？
-			// oSubNav 这个东西不是为null吗？
-
-			//获取该项下的指示箭头
-			oEm = document.getElementsByTagName('em')[0];
-
-			//显示该项下的子菜单
-			oSubNav.style.display = "block";
-
-			//判断显示区域
-			nav.offsetWidth - this.offsetLeft > oSubNav.offsetWidth ?
-
-			//如果在显示范围居左显示
-			oSubNav.style.left = this.offsetLeft + "px" :
-
-			//超出显示范围居右显示
-			oSubNav.style.right = 0;
-
-			//计算指标箭头显示位置
-			oEm.style.left = this.offsetLeft - oSubNav.offsetLeft + 50 + "px";
-			clearTimeout(timer);
-
-			//阻止事件冒泡
-			oSubNav.onmouseover = function (event){
-				(event || window.event).cancelBubble = true;
-				clearTimeout(timer)
+	oBtn.onclick = function() {
+		var reg = /^((?!0)\d{1,2}|100)$/;
+		if(!reg.test(oRow.value)) {
+			alert("\u8bf7\u8f93\u5165\u6b63\u786e\u7684\u6570\u503c\uff1a\n\n\u5217\u6570\u8303\u56f4\u30101-100\u3011");
+			oRow.select();
+			return
+		}
+		else if(!reg.test(oCol.value)) {
+			alert("\u8bf7\u8f93\u5165\u6b63\u786e\u7684\u6570\u503c\uff1a\n\n\u884c\u6570\u8303\u56f4\u30101-100\u3011");
+			oCol.select();
+			return
+		}
+		//隐藏信息区域
+		oMsg.style.display = "none";
+		//防止内存泄漏
+		oTab.oTable && (oTab.oTable.onclick = null);
+		//重新渲染表格
+		oTab.init(oRow.value, oCol.value);
+		//事件代理
+		oTab.oTable.onclick = function(e) {
+			e = e || event;
+			var oTarget = e.target || e.srcElement;
+			if(oTarget.tagName.toUpperCase() === "TD") {
+				oMsg.style.display = "block";
+				oMsg.innerHTML = "";
+				oMsg.innerHTML = "<span>\u60a8\u9009\u62e9\u7684\u533a\u57df\u6570\u5b57\u662f\uff1a"+oTarget.innerHTML+"\uff0c\u989c\u8272\u4e3a\uff1a"+"</span><em style=\"background:"+ oTarget.style.backgroundColor +";\"></em><span>"+oTarget.style.backgroundColor+"</span>";
 			}
-		};
-
-		li[i].onmouseout = function (){
-			timer = setTimeout(function () {
-				oSubNav.style.display = "none"
-			},300)
 		}
 	}
 };
 </script>
-
 </head>
 <body>
-<div id="nav">
-    <ul>
-      <li><a href="#">前端之家</a></li>
-      <li>
-	      <a href="#">行业资讯</a>
-	      <div class="subnav">
-	        <em class="arrow"></em>
-	        <p>
-            <span>
-              <a href="#">业界动态</a>|
-              <a href="#">收购融资</a>|
-              <a href="#">门户动态</a>|
-              <a href="#">搜索引擎</a>|
-              <a href="#">网络游戏</a>|
-              <a href="#">电子商务</a>|
-              <a href="#">广告传媒</a>|
-              <a href="#">厂商开发</a>
-            </span>
-	        </p>
-	      </div>
-      </li>
-        <li>
-            <a href="#">站长在线</a>
-            <div class="subnav">
-                <em class="arrow"></em>
-                <p>
-                    <span>
-                        <a href="#">站长报道</a>|
-                        <a href="#">好站推荐</a>|
-                        <a href="#">站长聚会</a>|
-                        <a href="#">站长访谈</a>|
-                        <a href="#">站长茶馆</a>|
-                        <a href="#">网站排行</a>
-                    </span>
-                </p>
-            </div>
-        </li>
-        <li>
-            <a href="#">网站运营</a>
-            <div class="subnav">
-                <em class="arrow"></em>
-                <p>
-                    <span>
-                        <a href="#">建站经验</a>|
-                        <a href="#">策划盈利</a>|
-                        <a href="#">搜索优化</a>|
-                        <a href="#">网站推广</a>|
-                        <a href="#">免费资源</a>
-                    </span>
-                </p>
-            </div>
-        </li>
-        <li>
-            <a href="#">设计在线</a>
-            <div class="subnav">
-                <em class="arrow"></em>
-                <p>
-                    <span>
-                        <a href="#">酷站推荐</a>|
-                        <a href="#">网页设计</a>|
-                        <a href="#">WEB标准</a>|
-                        <a href="#">视频处理</a>|
-                        <a href="#">设计活动</a>
-                    </span>
-                </p>
-            </div>
-        </li>
-        <li>
-            <a href="#">网络编程</a>
-            <div class="subnav">
-                <em class="arrow"></em>
-                <p>
-                    <span>
-                        <a href="#">Asp编程</a>|
-                        <a href="#">Php编程</a>|
-                        <a href="#">.Net编程</a>|
-                        <a href="#">Xml编程</a>|
-                        <a href="#">Access</a>|
-                        <a href="#">Mssql</a>|
-                        <a href="#">Mysql</a>
-                    </span>
-                </p>
-            </div>
-        </li>
-        <li>
-            <a href="#">联盟资讯</a>
-            <div class="subnav">
-                <em class="arrow"></em>
-                <p>
-                    <span>
-                        <a href="#">联盟动态</a>|
-                        <a href="#">联盟介绍</a>|
-                        <a href="#">联盟点评</a>|
-                        <a href="#">网赚技巧</a>
-                    </span>
-                </p>
-            </div>
-        </li>
-        <li>
-            <a href="#">服务器</a>
-            <div class="subnav">
-                <em class="arrow"></em>
-                <p>
-                    <span>
-                        <a href="#">Web服务器</a>|
-                        <a href="#">Ftp服务器</a>|
-                        <a href="#">Mail服务器</a>|
-                        <a href="#">Dns服务器</a>|
-                        <a href="#">Win服务器</a>|
-                        <a href="#">Linux服务器</a>|
-                        <a href="#">安全防护</a>|
-                        <a href="#">虚拟主机</a>
-                    </span>
-                </p>
-            </div>
-        </li>
-    </ul>
+<div id="setting">
+    <label>行数</label><input type="text" id="row" />
+    <label>列数</label><input type="text" id="col" />
+    <a href="javascript:;" id="btn">生成表格</a>
 </div>
+<div id="msg"></div>
 </body>
 </html>
