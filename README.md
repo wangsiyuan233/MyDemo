@@ -144,7 +144,7 @@ this.className = this.className == '' ? "cancel" : '';
 【平均用时 0.1 天】
 【难度：❀ ❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/01/task04_01.html)
-[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/01/task04_01.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/01/task04_01.html)<br>
 **【小结：】**
 
 ## task04_02：单方向轮播
@@ -152,7 +152,7 @@ this.className = this.className == '' ? "cancel" : '';
 【平均用时 0.1 天】
 【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/02/task04_02.html)
-[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/02/task04_02.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/02/task04_02.html)<br>
 **【小结：】我有两个闹钟，砸了三次闹钟**
 
 ## task04_03：来回轮播
@@ -160,7 +160,7 @@ this.className = this.className == '' ? "cancel" : '';
 【平均用时 0.1 天】
 【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/03/task04_03.html)
-[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/03/task04_03.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/03/task04_03.html)<br>
 **【小结：】**
 //判断播放顺序
 `order ? index++ : index--;`
@@ -177,7 +177,7 @@ this.className = this.className == '' ? "cancel" : '';
 【平均用时 0.1 天】
 【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/05/task04_05.html)
-[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/05/task04_05.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/05/task04_05.html)<br>
 **【小结：】**
 `return getComputedStyle(obj, null)[attr]`
 
@@ -186,7 +186,7 @@ this.className = this.className == '' ? "cancel" : '';
 【平均用时 0.1 天】
 【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/07/task04_07.html)
-[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/07/task04_07.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/07/task04_07.html)<br>
 **【小结：】删除、替换、插入**
 
 ## task04_08：绑定事件练习
@@ -194,8 +194,10 @@ this.className = this.className == '' ? "cancel" : '';
 【平均用时 0.1 天】
 【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task04/08/task04_08.html)
-[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/08/task04_08.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/08/task04_08.html)<br>
 **【小结：】**
 `addHandler`/`removeHandler`/`addLoadHandler`
+----------
+### task05系列
 
 
