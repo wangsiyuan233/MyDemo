@@ -207,7 +207,7 @@ this.className = this.className == '' ? "cancel" : '';
 【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task05/01/task05_01.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task05/01/task05_01.html)<br>
-**【小结：】**
+**【小结：】 阻止冒泡事件的发生 **
 
 ## task05_05：图片随鼠标一起移动
 
@@ -215,7 +215,7 @@ this.className = this.className == '' ? "cancel" : '';
 【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task05/05/task05_05.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task05/05/task05_05.html)<br>
-**【小结：】**
+**【小结：】 设置放大后的图片的 top 和 left 值**
 
 ----------
 ### task06系列
@@ -226,7 +226,7 @@ this.className = this.className == '' ? "cancel" : '';
 【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task06/01/task06_01.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task06/01/task06_01.html)<br>
-**【小结：】**
+**【小结：】 clientX offsetLef offsetWidth **
 
 ## task06_03：影子拖拽
 
@@ -234,7 +234,7 @@ this.className = this.className == '' ? "cancel" : '';
 【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task06/03/task06_03.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task06/03/task06_03.html)<br>
-**【小结：】**
+**【小结：】 需要绑定 onmousemove**
 
 ## task06_04：非匀速轮播
 
@@ -242,7 +242,7 @@ this.className = this.className == '' ? "cancel" : '';
 【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task06/04/task06_04.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task06/04/task06_04.html)<br>
-**【小结：】**
+**【小结：】 iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed); **
 
 ## task06_05：loading加载图片
 
@@ -250,6 +250,6 @@ this.className = this.className == '' ? "cancel" : '';
 【难度：❀ ❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task06/05/task06_05.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task06/05/task06_05.html)<br>
-**【小结：】**
+**【小结：】 透明度和速度**
 
 
