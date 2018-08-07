@@ -4,140 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>task05_06：键盘控制div属性</title>
+<title>task05_07：div闪烁</title>
 
 <style type="text/css">
-html,body{overflow:hidden;}
-body{margin:0;padding:0;}
-pre{color:green;padding:10px 15px;background:#f0f0f0;border:1px dotted #333;font:12px/1.5 Courier New;margin:12px;}
-span{color:#999;}
-#box{position:absolute;top:50px;left:300px;width:100px;height:100px;background:red;}
+#box{position:absolute;top:50%;left:50%;color:#fff;width:200px;height:200px;background:red;cursor:pointer;letter-spacing:5px;text-align:center;font:12px/200px Arial;margin:-100px 0 0 -100px;}
 </style>
 
-
-<script>
+<script type="text/javascript">
 window.onload = function (){
 	var box = document.getElementById("box");
-	var bLeft = bTop = bRight = bBottom = bCtrlKey = false;
+	var timer = false; //timer最开始的时候是关闭的状态
 
-	setInterval(function (){
-		if (bLeft){
-			box.style.left = box.offsetLeft - 10 + "px"
-		}
-		else if (bRight){
-			box.style.left = box.offsetLeft + 10 + "px"
-		}
-
-		if (bTop){
-			box.style.top = box.offsetTop - 10 + "px"
-		}
-		else if(bBottom){
-			box.style.top = box.offsetTop + 10 + "px"
-		}
-		//防止溢出
-		limit();
-	},30);
-
-	document.onkeydown = function (event){
-		var event = event || window.event;
-		bCtrlKey = event.ctrlKey;
-
-		switch (event.keyCode){
-			case 37:
-				bLeft = true;
-				break;
-			case 38:
-				if(bCtrlKey){
-					var oldWidth = box.offsetWidth;
-					var oldHeight = box.offsetHeight;
-
-					box.style.width = box.offsetWidth * 1.5 + "px";
-					box.style.height = box.offsetHeight * 1.5 + "px";
-
-					box.style.left = box.offsetLeft - (box.offsetWidth - oldWidth) / 2 + "px";
-					box.style.top = box.offsetTop - (box.offsetHeight - oldHeight) / 2 + "px";
-
-					break;
-				}
-				bTop = true;
-				break;
-			case 39:
-				bRight = true;
-				break;
-			case 40:
-				if(bCtrlKey){
-					var oldWidth = box.offsetWidth;
-					var oldHeight = box.offsetHeight;
-
-					box.style.width = box.offsetWidth * 0.75 + "px";
-					box.style.height = box.offsetHeight * 0.75 + "px";
-
-					box.style.left = box.offsetLeft - (box.offsetWidth - oldWidth) / 2 + "px";
-					box.style.top = box.offsetTop - (box.offsetHeight - oldHeight) / 2 + "px";
-
-					break;
-				}
-				bBottom = true;
-				break;
-			case 49:
-				bCtrlKey && (box.style.background = "green");
-				break;
-			case 50:
-				bCtrlKey && (box.style.background = "yellow");
-				break;
-			case 51:
-				bCtrlKey && (box.style.background = "blue");
-				break;
-		}
-
-		return false
-	};
-
-	document.onkeyup = function (event){
-		switch ((event || window.event).keyCode){
-			case 37:
-				bLeft = false;
-				break;
-			case 38:
-				bTop = false;
-				break;
-			case 39:
-				bRight = false;
-				break;
-			case 40:
-				bBottom = false;
-				break;
-		}
-	};
-
-	//防止溢出
-	function limit(){
-		var doc = [document.documentElement.clientWidth, document.documentElement.clientHeight]
-		//防止左侧溢出
-		box.offsetLeft <=0 && (box.style.left = 0);
-		//防止顶部溢出
-		box.offsetTop <=0 && (box.style.top = 0);
-		//防止右侧溢出
-		doc[0] - box.offsetLeft - box.offsetWidth <= 0 && (box.style.left = doc[0] - box.offsetWidth + "px");
-		//防止底部溢出
-		doc[1] - box.offsetTop - box.offsetHeight <= 0 && (box.style.top = doc[1] - box.offsetHeight + "px")
+	box.onclick = function (){
+		var i = 0;
+		clearInterval(timer);
+		timer = setInterval(function () {
+			box.style.display = i++ % 2 ? "none" : "block";
+			i > 10 && (clearInterval(timer))
+		}, 80)
 	}
 };
-
 </script>
+
 </head>
 <body>
-<pre>
-红色方块为键盘操作区域，您可以进行如下操作：
-
-上：↑ 下：↓ 左：← 右：→
-
-Ctrl + 1 : 背景变为绿色
-Ctrl + 2 : 背景变为黄色
-Ctrl + 3 : 背景变为蓝色
-Ctrl + ↑ : 放大
-Ctrl + ↓ : 缩小
-</pre>
-<div id="box"></div>
+<div id="box">点击我就闪</div>
 </body>
 </html>

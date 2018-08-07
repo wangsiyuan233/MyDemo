@@ -1,6 +1,7 @@
 ## task05_01：select控件
 
 【平均用时 0.2 天】
+【难度：❀ ❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task05/01/task05_01.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task05/01/task05_01.html)
 

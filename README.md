@@ -197,7 +197,59 @@ this.className = this.className == '' ? "cancel" : '';
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task04/08/task04_08.html)<br>
 **【小结：】**
 `addHandler`/`removeHandler`/`addLoadHandler`
+
 ----------
 ### task05系列
+
+## task05_01：select控件
+
+【平均用时 0.2 天】
+【难度：❀ ❀ ❀】
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task05/01/task05_01.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task05/01/task05_01.html)<br>
+**【小结：】**
+
+## task05_05：图片随鼠标一起移动
+
+【平均用时 0.2 天】
+【难度：❀ ❀ ❀】
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task05/05/task05_05.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task05/05/task05_05.html)<br>
+**【小结：】**
+
+----------
+### task06系列
+
+## task06_01：苹果任务栏
+
+【平均用时 0.2 天】
+【难度：❀ ❀ ❀】
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task06/01/task06_01.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task06/01/task06_01.html)<br>
+**【小结：】**
+
+## task06_03：影子拖拽
+
+【平均用时 0.2 天】
+【难度：❀ ❀ ❀】
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task06/03/task06_03.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task06/03/task06_03.html)<br>
+**【小结：】**
+
+## task06_04：非匀速轮播
+
+【平均用时 0.2 天】
+【难度：❀ ❀ ❀】
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task06/04/task06_04.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task06/04/task06_04.html)<br>
+**【小结：】**
+
+## task06_05：loading加载图片
+
+【平均用时 0.2 天】
+【难度：❀ ❀ ❀ ❀】
+[【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task06/05/task06_05.html)
+[【效果预览】](https://wangsiyuan233.cn/MyDemo/task06/05/task06_05.html)<br>
+**【小结：】**
 
 
