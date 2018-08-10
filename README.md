@@ -90,7 +90,7 @@ oInput.onkeyup = function (){this.value = this.value.replace(/[^(\d)|(,)]/,"")};
 【难度：❀ ❀】
 [【我的代码】](https://github.com/wangsiyuan233/MyDemo/blob/master/task03/03/task03_03.html)
 [【效果预览】](https://wangsiyuan233.cn/MyDemo/task03/03/task03_03.html)<br>
-**【小结：】 区别 i++ 和 ++i **
+**【小结：】 区别 i++ 和 ++i**
 
 ## task03_05：自动累加
 
